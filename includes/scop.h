@@ -14,11 +14,11 @@
 #ifndef SCOP_H
 # define SCOP_H
 
-# include "../minilibx_macos/mlx.h"
-# include "../minilibx_macos/mlx_opengl.h"
+# include "mlx.h"
 # include <stddef.h>
 # include <stdio.h>
-# include <OpenGL/gl3.h>
+# include <GL/gl.h>
+# include "mlx_opengl.h"
 
 /*
 ** info
