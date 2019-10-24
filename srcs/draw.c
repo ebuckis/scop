@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 12:00:16 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/18 16:22:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/24 08:40:30 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,7 +107,6 @@ void    draw_triangle(void)
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glDrawArrays(GL_TRIANGLES, 3, 3);
-
 
 
 }
