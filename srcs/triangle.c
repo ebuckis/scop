@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 14:22:33 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 14:32:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ void    draw_triangle(void)
 		1.0, 1.0, 1.0	//blanc
 	};
 
-	GLuint	index[] = {
+	GLshort	index[] = {
 		0, 1, 2,
 		0, 2, 3,
 		0, 3, 4,
@@ -55,25 +55,23 @@ void    draw_triangle(void)
 	// VBO points
 	ver_id = make_float_vbo(points, sizeof(points), GL_ARRAY_BUFFER);
 	loc = glGetAttribLocation(sh_id, "glVertex");
-	glBindBuffer(GL_ARRAY_BUFFER, ver_id);
 	glEnableVertexAttribArray(loc);
 	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	// VBO colors
 	frg_id = make_float_vbo(colors, sizeof(colors), GL_ARRAY_BUFFER);
 	loc = glGetAttribLocation(sh_id, "glColor");
-	glBindBuffer(GL_ARRAY_BUFFER, frg_id);
 	glEnableVertexAttribArray(loc);
 	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	// VBO indices
-	ind_id = make_float_vbo(index, sizeof(index), GL_ELEMENT_ARRAY_BUFFER);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ind_id);
+	ind_id = make_short_vbo(index, sizeof(index));
 	
 
 
 	//gestion de la profondeur
 	//glDrawArrays(GL_TRIANGLES, 0, 3*4);
+	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, 0);
 	destruct_vao_vbo();
 
 }

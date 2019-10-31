@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 12:37:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 14:31:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,7 @@ void    get_version_opengl(void);
 GLuint	makeShaderProgram(void);
 
 GLuint	make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type);
+GLuint	make_short_vbo(GLshort *values, GLsizeiptr size);
 void	create_vao(void);
 
 void    draw_triangle(void);
