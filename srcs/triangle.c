@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 12:50:45 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 14:22:33 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,44 +23,30 @@ void	destruct_vao_vbo(void)
 void    draw_triangle(void)
 {
 	GLuint	loc;
-	float	pt = 0.1;
+	float	pt = 0.3;
 	float	points[] = {
-		-pt-0.5, +pt, +pt,	//p0
-		+pt-0.5, -pt, +pt,	//p1
-		+pt-0.5, +pt, -pt,	//p2
-
-		-pt, +pt-0.5, +pt,	//p0
-		+pt, -pt-0.5, +pt,	//p1
-		-pt, -pt-0.5, -pt,	//p3
-
-		+pt, -pt+0.5, +pt,	//p1
-		+pt, +pt+0.5, -pt,	//p2
-		-pt, -pt+0.5, -pt,	//p3
-
-		-pt+0.5, +pt, +pt,	//p0
-		+pt+0.5, +pt, -pt,	//p2
-		-pt+0.5, -pt, -pt	//p3
+		+0.0, +0.0, +1.0,	//p0
+		+0.0, +0.5, +0.0,	//p1
+		+0.5, +0.0, +0.0,	//p2
+		+0.0, -0.5, +0.0,	//p3
+		-0.5, +0.0, +0.0	//p4
 	};
 
 	float	colors[] = {
 		0.0, 0.5, 1.0,	//bleu
 		1.0, 0.5, 0.0,	//orange
 		0.0, 1.0, 0.0,	//vert
-
-		0.0, 0.5, 1.0,	//bleu
-		1.0, 0.5, 0.0,	//orange
 		0.7, 0.0, 0.7,	//violet
-
-		1.0, 0.5, 0.0,	//orange
-		0.0, 1.0, 0.0,	//vert
-		0.7, 0.0, 0.7,	//violet
-
-		0.0, 0.5, 1.0,	//bleu
-		0.0, 1.0, 0.0,	//vert
-		0.7, 0.0, 0.7	//violet
+		1.0, 1.0, 1.0	//blanc
 	};
 
-	GLuint sh_id, ver_id, frg_id;
+	GLuint	index[] = {
+		0, 1, 2,
+		0, 2, 3,
+		0, 3, 4,
+		0, 4, 1
+	};
+	GLuint sh_id, ver_id, frg_id, ind_id;
 	create_vao();
 
 	sh_id = makeShaderProgram();
@@ -80,10 +66,14 @@ void    draw_triangle(void)
 	glEnableVertexAttribArray(loc);
 	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
+	// VBO indices
+	ind_id = make_float_vbo(index, sizeof(index), GL_ELEMENT_ARRAY_BUFFER);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ind_id);
+	
 
 
 	//gestion de la profondeur
-	glDrawArrays(GL_TRIANGLES, 0, 3*4);
+	//glDrawArrays(GL_TRIANGLES, 0, 3*4);
 	destruct_vao_vbo();
 
 }
