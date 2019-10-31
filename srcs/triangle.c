@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 14:32:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 15:57:19 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,25 +26,29 @@ void    draw_triangle(void)
 	float	pt = 0.3;
 	float	points[] = {
 		+0.0, +0.0, +1.0,	//p0
-		+0.0, +0.5, +0.0,	//p1
-		+0.5, +0.0, +0.0,	//p2
-		+0.0, -0.5, +0.0,	//p3
-		-0.5, +0.0, +0.0	//p4
+		+0.0, +0.5, +0.5,	//p1
+		+0.5, +0.0, -0.9,	//p2
+		+0.0, -0.5, +0.1,	//p3
+		-0.5, +0.0, +0.3	//p4
 	};
 
 	float	colors[] = {
-		0.0, 0.5, 1.0,	//bleu
-		1.0, 0.5, 0.0,	//orange
-		0.0, 1.0, 0.0,	//vert
-		0.7, 0.0, 0.7,	//violet
-		1.0, 1.0, 1.0	//blanc
+		1.0, 1.0, 0.0,	//jaune
+		1.0, 1.0, 0.0,	//jaune
+		1.0, 0.5, 0.3,	//orange
+		1.0, 1.0, 0.0,	//jaune
+		1.0, 0.5, 0.3,	//orange
 	};
 
 	GLshort	index[] = {
-		0, 1, 2,
-		0, 2, 3,
-		0, 3, 4,
-		0, 4, 1
+		0, 1,
+		0, 2,
+		0, 3,
+		0, 4,
+		4, 1,
+		1, 2,
+		2, 3,
+		3, 4
 	};
 	GLuint sh_id, ver_id, frg_id, ind_id;
 	create_vao();
@@ -71,7 +75,7 @@ void    draw_triangle(void)
 
 	//gestion de la profondeur
 	//glDrawArrays(GL_TRIANGLES, 0, 3*4);
-	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, 0);
+	glDrawElements(GL_LINES, 8*2, GL_UNSIGNED_SHORT, 0);
 	destruct_vao_vbo();
 
 }
