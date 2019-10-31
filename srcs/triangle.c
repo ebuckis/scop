@@ -6,39 +6,69 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/24 15:02:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 09:22:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void	disable_draw(void)
+void	destruct_vao_vbo(void)
 {
-	GLuint	vertex_loc = 0;
-
-	glDisableVertexAttribArray(vertex_loc);
+	glDisableVertexAttribArray(0);//vertex_loc
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }
 
 void    draw_triangle(void)
 {
-    float points[] = {.0,  .5,  .0, -.5,  -.5,  .0, .5,  -.5,  .0,
-    .0,  .8,  .0, -.5,  .7,  .0, .5,  .7,  .0};
-    GLuint vbo = 0;
-    GLuint vao = 0;
+	GLuint	vertex_loc;
+	float	pt = 0.5;
+	float	points[] = {
+		-pt, +pt, +pt,	//p0
+		+pt, -pt, +pt,	//p1
+		+pt, +pt, -pt,	//p2
 
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(vao);
+		-pt, +pt, +pt,	//p0
+		+pt, -pt, +pt,	//p1
+		-pt, -pt, -pt,	//p3
 
+		+pt, -pt, +pt,	//p1
+		+pt, +pt, -pt,	//p2
+		-pt, -pt, -pt,	//p3
 
-	vbo = make_float_vbo(points, sizeof(points), GL_ARRAY_BUFFER);	
+		-pt, +pt, +pt,	//p0
+		+pt, +pt, -pt,	//p2
+		-pt, -pt, -pt	//p3
+	};
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+/*	float	colors[] = {
+		0.0, 0.5, 1.0,	//bleu
+		1.0, 0.5, 0.0,	//orange
+		0.0, 1.0, 0.0,	//vert
 
-    makeShaderProgram();
+		0.0, 0.5, 1.0,	//bleu
+		1.0, 0.5, 0.0,	//orange
+		0.7, 0.0, 0.7,	//violet
 
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+		1.0, 0.5, 0.0,	//orange
+		0.0, 1.0, 0.0,	//vert
+		0.7, 0.0, 0.7,	//violet
+
+		0.0, 0.5, 1.0,	//bleu
+		0.0, 1.0, 0.0,	//vert
+		0.7, 0.0, 0.7	//violet
+	};*/
+
+	vertex_loc = 0;
+	create_vao();
+	make_float_vbo(points, sizeof(points), GL_ARRAY_BUFFER);	
+	glVertexAttribPointer(vertex_loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	makeShaderProgram();
+
+	//gestion de la profondeur
+	glEnable(GL_DEPTH_TEST);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+	destruct_vao_vbo();
+
 }

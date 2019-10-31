@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/24 14:30:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 08:29:47 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,9 +27,10 @@ char    *get_vertex_shader(void);
 char    *get_frag_shader(void);
 void    get_version_opengl(void);
 
-GLuint makeShaderProgram(void);
+GLuint	makeShaderProgram(void);
 
-GLuint  make_float_vbo(GLfloat *value, GLsizeiptr size, GLenum vbo_type);
+void    make_float_vbo(GLfloat *value, GLsizeiptr size, GLenum vbo_type);
+void	create_vao(void);
 
 void    draw_triangle(void);
 void	display_draw(void);
