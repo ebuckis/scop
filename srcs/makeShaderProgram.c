@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:45:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/24 14:50:44 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 09:34:08 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,3 +50,5 @@ GLuint makeShaderProgram(void)
 
 	return shaderProgramID;
 }
+
+//glGetAttribLocation

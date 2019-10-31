@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 09:22:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/31 09:32:26 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,6 +62,7 @@ void    draw_triangle(void)
 
 	vertex_loc = 0;
 	create_vao();
+	
 	make_float_vbo(points, sizeof(points), GL_ARRAY_BUFFER);	
 	glVertexAttribPointer(vertex_loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	makeShaderProgram();
