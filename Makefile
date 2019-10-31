@@ -2,7 +2,7 @@
 
 NAME = scop
 
-WFLAGS = -Wall -Wextra -Werror
+WFLAGS = #-Wall -Wextra -Werror
 MXL_FLAGS = -framework Opengl -framework Appkit
 
 SRC_PATH = ./srcs/
