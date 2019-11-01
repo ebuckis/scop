@@ -6,16 +6,10 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 12:00:16 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/24 12:43:03 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 14:46:14 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void	display_draw(void)
-{
-//	glClearColor(0.4, 0.4, 0.4, 0.0);
-//	glClear(GL_COLOR_BUFFER_BIT);
-	draw_triangle();
-}

@@ -6,12 +6,33 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 10:52:53 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 15:25:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
+
+int     ft_key_action(int keycode, void **p)
+{
+    printf("|%d|\n", keycode);
+   // glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    if (keycode == 86)
+    {
+        draw_triangle('X');
+    }
+    if (keycode == 87)
+    {
+        draw_triangle('Y');
+    }
+    if (keycode == 88)
+    {
+        draw_triangle('Z');
+    }
+    mlx_opengl_swap_buffers(p[1]);
+    
+}
 
 int     main()
 {
@@ -24,13 +45,11 @@ int     main()
 
 
     
-    draw_triangle();
-
-printf("%s", get_vertex_shader());   
-printf("%s", get_frag_shader());   
-
+    draw_triangle('Y');
     mlx_opengl_swap_buffers(p[1]);
-    get_version_opengl();
+
+
+    mlx_key_hook(p[1], ft_key_action, p);
     mlx_loop(p[0]);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 10:23:36 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 15:24:41 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	destruct_vao_vbo(void)
 	glBindVertexArray(0);
 }
 
-void    draw_triangle(void)
+void    draw_triangle(char c)
 {
 	GLuint	loc;
 	float	pt = 0.3;
@@ -48,7 +48,12 @@ void    draw_triangle(void)
 	};
 
 	GLuint sh_id, ver_id, frg_id, ind_id;
+	GLfloat 	*mat;
+	static float angle = 0;
+	angle += M_PI /50;
 
+	mat = matrice_rot_create(angle, c);
+	display_matrices(mat);
 // effacer l'ecran
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -58,6 +63,11 @@ void    draw_triangle(void)
 	create_vao();
 
 	sh_id = makeShaderProgram();
+
+	loc = glGetUniformLocation(sh_id, "matrix");
+	glUniformMatrix4fv(loc, 1, GL_FALSE, mat);//malloc pas free
+
+
 
 	glEnable(GL_DEPTH_TEST);
 	// VBO points
