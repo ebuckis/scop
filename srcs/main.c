@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/24 12:58:00 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 10:52:53 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@ int     main()
     mlx_opengl_window_set_context(p[1]);
 
 
+    
     draw_triangle();
 
 printf("%s", get_vertex_shader());   

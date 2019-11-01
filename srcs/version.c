@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 11:18:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 09:34:47 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 10:20:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,9 @@ void main()\n\
 	glFragColor = vec4(frgColor, 1);\n\
 }\n");
 }
+
+
+
 
 void    get_version_opengl(void)
 {

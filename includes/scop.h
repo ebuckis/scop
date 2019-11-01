@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 14:31:55 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 10:27:05 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <openGL/gl3.h>
 # include "mlx_opengl.h"
+# include <math.h>
 
 /*
 ** info

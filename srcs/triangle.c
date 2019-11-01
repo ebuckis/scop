@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 14:32:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/01 10:23:36 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,15 @@ void    draw_triangle(void)
 		0, 3, 4,
 		0, 4, 1
 	};
+
 	GLuint sh_id, ver_id, frg_id, ind_id;
+
+// effacer l'ecran
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+// creer matrice de rotation
+
+
 	create_vao();
 
 	sh_id = makeShaderProgram();
