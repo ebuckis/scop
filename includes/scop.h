@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 10:47:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 12:42:56 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,19 +29,35 @@
 ** Stuctures 
 */
 
+
 typedef struct		s_matrix
 {
-	GLfloat 	*values;
-	GLuint		loc;
+	GLfloat 		*values;
+	GLuint			loc;
 }					t_matrix;
 
+typedef	struct		s_index
+{
+	GLuint			id;
+	GLshort		 	*values;
+	//GLuint			loc;
+}					t_index;
 
 typedef struct		s_vbo
 {
+	size_t			size;
 	GLuint			id;
 	GLuint			loc;
 	GLfloat			*values;//short for indexes
 }					t_vbo;
+
+typedef	struct		s_angle
+{
+	GLfloat			x;
+	GLfloat			y;
+	GLfloat			z;
+}					t_angle;
+
 
 typedef	struct		s_shader
 {
@@ -57,12 +73,13 @@ typedef struct		s_draw
 {
 	void			*init;
 	void			*win;
-	t_vbo			vbo_pts;
+	t_vbo			vbo_vertex;
 	t_vbo			vbo_colors;
-	t_vbo			vbo_index;
+	t_index			vbo_index;
 	GLuint			vao;
 	t_shader		shader;
-	char			rotation_axis;
+	char			axis;
+	t_angle			angle;
 	t_matrix		matrix;
 }					t_draw;
 
@@ -74,22 +91,24 @@ typedef struct		s_draw
 ** info
 */
 
-int     init_matrix(t_draw *draw);
+int			init_matrix(t_draw *draw);
+int			init_vertex(t_draw *draw);	//VBO vertex
+int			init_colors(t_draw *draw);	//VBO colors
+int			init_indexes(t_draw *draw);
 
-char    *get_vertex_shader(void);
-char    *get_frag_shader(void);
-void    get_version_opengl(void);
+char		*get_vertex_shader(void);
+char		*get_frag_shader(void);
+void		get_version_opengl(void);
 
-void make_shader_program(t_draw *draw);
+void 		make_shader_program(t_draw *draw);
 
-GLuint	make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type);
-GLuint	make_short_vbo(GLshort *values, GLsizeiptr size);
-void	create_vao(void);
+GLuint		make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type);
+GLuint		make_short_vbo(GLshort *values, GLsizeiptr size);
+void		create_vao(void);
 
-void    draw_triangle(char c);
+void	    draw_triangle(t_draw *draw);
 
-GLfloat		*matrice_rot_create(float angle, char axis);
-float       increm_angle(int inc);
+GLfloat		*matrice_rot_create(t_draw *draw);
 void    	display_matrices(GLfloat *mat);
 
 #endif

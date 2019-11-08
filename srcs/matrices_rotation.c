@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/01 11:10:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 14:45:39 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 12:49:54 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,13 @@
 ** 
 */
 
-static GLfloat     *mat_rot_z(GLfloat *matrice, float angle)
+static GLfloat     *mat_rot_z(t_draw *draw)
 {
+	GLfloat		*matrice;
+	GLfloat		angle;
+
+	matrice = draw->matrix.values;
+	angle = draw->angle.z;
 	matrice[0] = cos(-angle);
 	matrice[4] = sin(-angle);
 	matrice[1] = -matrice[4];
@@ -44,8 +49,13 @@ static GLfloat     *mat_rot_z(GLfloat *matrice, float angle)
 ** 
 */
 
-static GLfloat		*mat_rot_y(GLfloat *matrice, float angle)
+static GLfloat		*mat_rot_y(t_draw *draw)
 {
+	GLfloat		*matrice;
+	GLfloat		angle;
+
+	matrice = draw->matrix.values;
+	angle = draw->angle.y;
 	matrice[0] = cos(-angle);
 	matrice[2] = sin(-angle);
 	matrice[5] = 1;
@@ -65,8 +75,13 @@ static GLfloat		*mat_rot_y(GLfloat *matrice, float angle)
 ** 
 */
 
-static GLfloat		*mat_rot_x(GLfloat *matrice, float angle)
+static GLfloat		*mat_rot_x(t_draw *draw)
 {
+	GLfloat		*matrice;
+	GLfloat		angle;
+
+	matrice = draw->matrix.values;
+	angle = draw->angle.x;
 	matrice[0] = 1.0;
 	matrice[5] = cos(-angle);
 	matrice[9] = sin(-angle);
@@ -76,38 +91,13 @@ static GLfloat		*mat_rot_x(GLfloat *matrice, float angle)
 	return (matrice);
 }
 
-static GLfloat		*matrice_generate(void)
-{
-	GLfloat 	*mat;
-	unsigned	i;
-
-	i = 0;
-	mat = (GLfloat *)malloc(sizeof(GLfloat) * 16);
-	if (!mat)
-		return (NULL);
-	while (i < 16)
-	{
-		mat[i] = 0;
-		i++;
-	}
-	return (mat);
-}
-
-GLfloat		*matrice_rot_create(float angle, char axis)
+GLfloat		*matrice_rot_create(t_draw *draw)
 {
 	GLfloat 	*mat;
 
-	mat = matrice_generate();
-	if (!mat)
-		return (NULL);
-	if (axis == 'X')
-		return (mat_rot_x(mat, angle));
-	else if (axis == 'Y')
-		return (mat_rot_y(mat, angle));
-	else if (axis == 'Z')
-		return (mat_rot_z(mat, angle));
-	else
-		return (NULL);
+	draw->matrix.values = mat_rot_x(draw);
+	draw->matrix.values = mat_rot_y(draw);
+	draw->matrix.values = mat_rot_z(draw);
 }
 
 void	display_matrices(GLfloat *mat)

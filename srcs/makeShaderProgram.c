@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:45:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 10:46:48 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 12:57:02 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,10 +31,8 @@ GLuint make_frag_shader(const GLchar* shaderSource)
 
 void make_shader_program(t_draw *draw)
 {
-	draw->shader.ver_str = get_vertex_shader();
 	draw->shader.ver_id = make_ver_shader(draw->shader.ver_str);
 
-	draw->shader.frag_str = get_frag_shader();
 	draw->shader.frag_id = make_frag_shader(draw->shader.frag_str);
 
 	draw->shader.id = glCreateProgram();
