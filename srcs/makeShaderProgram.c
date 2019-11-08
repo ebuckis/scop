@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:45:55 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 09:34:08 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 10:46:48 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-GLuint makeVertexShader(const GLchar* shaderSource)
+GLuint make_ver_shader(const GLchar* shaderSource)
 {
 	GLuint vertexShaderID = glCreateShader( GL_VERTEX_SHADER );
 	glShaderSource( vertexShaderID, 1, &shaderSource, NULL );
@@ -21,7 +21,7 @@ GLuint makeVertexShader(const GLchar* shaderSource)
 	return vertexShaderID;
 }
 
-GLuint makeFragmentShader(const GLchar* shaderSource)
+GLuint make_frag_shader(const GLchar* shaderSource)
 {
 	GLuint fragmentShaderID = glCreateShader( GL_FRAGMENT_SHADER );
 	glShaderSource( fragmentShaderID, 1, &shaderSource, NULL );
@@ -29,26 +29,19 @@ GLuint makeFragmentShader(const GLchar* shaderSource)
 	return fragmentShaderID;
 }
 
-GLuint makeShaderProgram(void)
+void make_shader_program(t_draw *draw)
 {
-	GLuint		vertexShaderID;
-	GLuint		fragmentShaderID;
-	GLuint		shaderProgramID;
-	const char	*str_shader;
-	
-	str_shader = get_vertex_shader();
-	vertexShaderID = makeVertexShader(str_shader);
+	draw->shader.ver_str = get_vertex_shader();
+	draw->shader.ver_id = make_ver_shader(draw->shader.ver_str);
 
-	str_shader = get_frag_shader();
-	fragmentShaderID = makeFragmentShader(str_shader);
+	draw->shader.frag_str = get_frag_shader();
+	draw->shader.frag_id = make_frag_shader(draw->shader.frag_str);
 
-	shaderProgramID = glCreateProgram();
-	glAttachShader( shaderProgramID, vertexShaderID );
-	glAttachShader( shaderProgramID, fragmentShaderID );
-	glLinkProgram( shaderProgramID );
-    glUseProgram(shaderProgramID);
-
-	return shaderProgramID;
+	draw->shader.id = glCreateProgram();
+	glAttachShader( draw->shader.id, draw->shader.ver_id );
+	glAttachShader( draw->shader.id, draw->shader.frag_id );
+	glLinkProgram( draw->shader.id );
+    glUseProgram(draw->shader.id);
 }
 
 //glGetAttribLocation
