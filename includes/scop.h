@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 14:46:54 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 09:12:38 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,40 @@
 # include <openGL/gl3.h>
 # include "mlx_opengl.h"
 # include <math.h>
+
+/*
+** Stuctures 
+*/
+
+typedef struct		s_vbo
+{
+	GLuint			id;
+	GLuint			loc;
+	GLfloat			*values;//short for indexes
+}					t_vbo;
+
+typedef	struct		s_shader
+{
+	GLuint			id;
+	GLuint			ver_id;
+	GLuint			frag_id;
+	char			*ver_str;
+	char			*frag_str;
+};
+
+
+typedef struct		s_draw
+{
+	t_vbo			vbo_pts;
+	t_vbo			vbo_colors;
+	t_vbo			vbo_index;
+	GLuint			vao;
+	t_shader		shader;
+}					t_draw;
+
+
+
+
 
 /*
 ** info

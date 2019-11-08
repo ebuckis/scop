@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 15:52:39 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 08:49:48 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ void    draw_triangle(char c)
 	angle += M_PI /50;
 
 	mat = matrice_rot_create(angle, c);
-	display_matrices(mat);
+//	display_matrices(mat);
 // effacer l'ecran
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
