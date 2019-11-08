@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:52:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 14:32:02 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 14:24:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ GLuint	make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type)
 	id = 0;
 	glGenBuffers(1, &id);
 	glBindBuffer(vbo_type, id);
-	glBufferData(vbo_type, size, values, GL_STATIC_DRAW);
+	glBufferData(vbo_type, size * sizeof(GLfloat), values, GL_STATIC_DRAW);
 	glBindBuffer(vbo_type, id);
 	return id;
 }
@@ -32,7 +32,7 @@ GLuint	make_short_vbo(GLshort *values, GLsizeiptr size)
 	id = 0;
 	glGenBuffers(1, &id);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, values, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * sizeof(GLshort), values, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
 	return id;
 }

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 10:35:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 12:53:09 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 15:00:52 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,8 +44,8 @@ int     init_matrix(t_draw *draw)
 int		init_vertex(t_draw *draw)	//VBO vertex
 {
 //CUBE :
-	GLfloat	v = 0.5;
-	GLfloat	points[] = {
+	float	v = 0.5;
+	float	points[] = {
 		+v, +v, +v,	//p0
 		+v, -v, +v,	//p1
 		-v, -v, +v,	//p2
@@ -60,13 +60,16 @@ int		init_vertex(t_draw *draw)	//VBO vertex
 	for (int i = 0; i < 24; i++)
 		draw->vbo_vertex.values[i] = points[i];
 
-	draw->vbo_vertex.size = sizeof(draw->vbo_vertex.values);
+	draw->vbo_vertex.size = 24 * sizeof(GLfloat); 
+
+
+
 	return (0);
 }
 
 int		init_colors(t_draw *draw)	//VBO colors
 {
-	float	colors[] = {
+	GLfloat	colors[] = {
 		1.0, 0.0 ,0.0,	//[0] rouge
 		0.0, 1.0, 0.0,	//[1] vert
 		0.0, 0.0, 1.0,	//[2] bleu
@@ -81,13 +84,14 @@ int		init_colors(t_draw *draw)	//VBO colors
 	for (int i = 0; i < 24; i++)
 		draw->vbo_colors.values[i] = colors[i];
 
-	draw->vbo_colors.size = sizeof(draw->vbo_colors.values);
+	draw->vbo_colors.size = 24 * sizeof(GLfloat);
 	return (0);
 }
 
 
 int		init_indexes(t_draw *draw)	//VBO_indices
 {
+
 	GLshort	index[] = {
 		0, 1, 2,
 		0, 2, 3,
@@ -104,7 +108,8 @@ int		init_indexes(t_draw *draw)	//VBO_indices
 	};
 	
 	draw->vbo_index.values = (GLshort *)malloc(sizeof(GLshort) * 12*3);
-	for (int i = 0; i < 24; i++)
-		draw->vbo_colors.values[i] = index[i];
+	for (int i = 0; i < 36; i++)
+		draw->vbo_index.values[i] = index[i];
+	draw->vbo_index.size = 36;
 	return (0);
 }

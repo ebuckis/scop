@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 12:42:56 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 14:07:50 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,7 @@ typedef struct		s_matrix
 typedef	struct		s_index
 {
 	GLuint			id;
+	size_t			size;
 	GLshort		 	*values;
 	//GLuint			loc;
 }					t_index;
