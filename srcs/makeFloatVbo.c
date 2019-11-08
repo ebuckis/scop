@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:52:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 14:24:24 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 15:24:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-GLuint	make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type)
+GLuint		make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type)
 {
 	GLuint	id;
 
@@ -21,11 +21,10 @@ GLuint	make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type)
 	glGenBuffers(1, &id);
 	glBindBuffer(vbo_type, id);
 	glBufferData(vbo_type, size * sizeof(GLfloat), values, GL_STATIC_DRAW);
-	glBindBuffer(vbo_type, id);
 	return id;
 }
 
-GLuint	make_short_vbo(GLshort *values, GLsizeiptr size)
+GLuint		make_short_vbo(GLshort *values, GLsizeiptr size)
 {
 	GLuint	id;
 
@@ -33,16 +32,14 @@ GLuint	make_short_vbo(GLshort *values, GLsizeiptr size)
 	glGenBuffers(1, &id);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size * sizeof(GLshort), values, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
 	return id;
 }
 
-void	create_vao(void)
+void		create_vao(void)
 {
-    GLuint vao = 0;
+    GLuint	vao = 0;
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     glEnableVertexAttribArray(0);
-//    glBindVertexArray(vao);
 }

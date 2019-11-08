@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 10:35:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 15:00:52 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/08 15:22:10 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,13 +38,14 @@ int     init_matrix(t_draw *draw)
 	if (!draw->matrix.values)
 		return (1);
 	matrice_rot_create(draw);
+	draw->matrix.loc = glGetUniformLocation(draw->shader.id, "matrix");
 	return (0);
 }
 
 int		init_vertex(t_draw *draw)	//VBO vertex
 {
 //CUBE :
-	float	v = 0.5;
+	float	v = 0.3;
 	float	points[] = {
 		+v, +v, +v,	//p0
 		+v, -v, +v,	//p1
@@ -60,9 +61,11 @@ int		init_vertex(t_draw *draw)	//VBO vertex
 	for (int i = 0; i < 24; i++)
 		draw->vbo_vertex.values[i] = points[i];
 
+	draw->vbo_vertex.loc = glGetAttribLocation(draw->shader.id, "glVertex");
 	draw->vbo_vertex.size = 24 * sizeof(GLfloat); 
 
 
+	draw->vbo_vertex.id = make_float_vbo(draw->vbo_vertex.values, draw->vbo_vertex.size, GL_ARRAY_BUFFER);
 
 	return (0);
 }
@@ -85,6 +88,8 @@ int		init_colors(t_draw *draw)	//VBO colors
 		draw->vbo_colors.values[i] = colors[i];
 
 	draw->vbo_colors.size = 24 * sizeof(GLfloat);
+	draw->vbo_colors.loc = glGetAttribLocation(draw->shader.id, "glColor");
+	draw->vbo_colors.id = make_float_vbo(draw->vbo_colors.values, draw->vbo_colors.size, GL_ARRAY_BUFFER);
 	return (0);
 }
 
@@ -111,5 +116,6 @@ int		init_indexes(t_draw *draw)	//VBO_indices
 	for (int i = 0; i < 36; i++)
 		draw->vbo_index.values[i] = index[i];
 	draw->vbo_index.size = 36;
+	draw->vbo_index.id = make_short_vbo(draw->vbo_index.values, draw->vbo_index.size);
 	return (0);
 }
