@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 14:07:50 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 09:32:32 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,10 +74,10 @@ typedef struct		s_draw
 {
 	void			*init;
 	void			*win;
+	GLuint			vao;
 	t_vbo			vbo_vertex;
 	t_vbo			vbo_colors;
 	t_index			vbo_index;
-	GLuint			vao;
 	t_shader		shader;
 	char			axis;
 	t_angle			angle;
@@ -105,11 +105,12 @@ void 		make_shader_program(t_draw *draw);
 
 GLuint		make_float_vbo(GLfloat *values, GLsizeiptr size, GLenum vbo_type);
 GLuint		make_short_vbo(GLshort *values, GLsizeiptr size);
-void		create_vao(void);
+void		create_vao(t_draw *draw);
 
 void	    draw_triangle(t_draw *draw);
 
 GLfloat		*matrice_rot_create(t_draw *draw);
 void    	display_matrices(GLfloat *mat);
+void		destruct_vao_vbo(t_draw *draw);
 
 #endif

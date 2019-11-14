@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/24 10:52:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 15:24:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 09:28:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,11 +35,8 @@ GLuint		make_short_vbo(GLshort *values, GLsizeiptr size)
 	return id;
 }
 
-void		create_vao(void)
+void		create_vao(t_draw *draw)
 {
-    GLuint	vao = 0;
-
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-    glEnableVertexAttribArray(0);
+    glGenVertexArrays(1, &(draw->vao));
+    glBindVertexArray(draw->vao);
 }
