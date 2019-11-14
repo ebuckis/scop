@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 09:33:44 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 09:38:20 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 
 void	destruct_vao_vbo(t_draw *draw)
 {
-	glDisableVertexAttribArray(draw->vbo_vertex.loc);//vertex_loc
-	glDisableVertexAttribArray(draw->vbo_colors.loc);//vertex_loc
+	glDisableVertexAttribArray(draw->vbo_vertex.loc);//vertex
+	glDisableVertexAttribArray(draw->vbo_colors.loc);//colors
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
