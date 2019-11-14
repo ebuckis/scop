@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 15:06:45 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 11:33:40 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,14 +56,9 @@ int		draw_init(t_draw *draw)
 	draw->shader.ver_str = get_vertex_shader();
 	draw->shader.frag_str = get_frag_shader();
 
-
-
 	make_shader_program(draw);
 
 	init_matrix(draw);
-	
-
-
 
 	//VBO Vertex
 	init_vertex(draw);
@@ -72,16 +67,18 @@ int		draw_init(t_draw *draw)
 	//VBO_indices
 	init_indexes(draw);
 
-
-
 	//TODO: verifier les retours de fonctions
 	return (0);
 }
 
-int     main()
+int     main(int ac, char **av)
 {
 	t_draw	draw;
 
+	if (ac != 2)
+		return (-1);//error
+
+	obj_parse(draw);
 
 	draw.init = mlx_init();
 	draw.win = mlx_new_opengl_window(draw.init, WIDTH_WIN, HEIGHT_WIN, "super");

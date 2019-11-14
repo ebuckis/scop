@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 09:32:32 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 12:59:27 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,10 +18,10 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <stdio.h>
+# include <string.h>
 # include <openGL/gl3.h>
 # include "mlx_opengl.h"
 # include <math.h>
-
 
 # define HEIGHT_WIN	1000
 # define WIDTH_WIN	1000
@@ -41,7 +41,6 @@ typedef	struct		s_index
 	GLuint			id;
 	size_t			size;
 	GLshort		 	*values;
-	//GLuint			loc;
 }					t_index;
 
 typedef struct		s_vbo
@@ -59,7 +58,6 @@ typedef	struct		s_angle
 	GLfloat			z;
 }					t_angle;
 
-
 typedef	struct		s_shader
 {
 	GLuint			id;
@@ -68,6 +66,12 @@ typedef	struct		s_shader
 	char			*ver_str;
 	char			*frag_str;
 }					t_shader;
+
+typedef struct		s_norm
+{
+	size_t			size;
+	GLfloat			*values;
+}					t_norm;
 
 
 typedef struct		s_draw
@@ -82,6 +86,7 @@ typedef struct		s_draw
 	char			axis;
 	t_angle			angle;
 	t_matrix		matrix;
+	t_norm			normal;
 }					t_draw;
 
 
