@@ -6,76 +6,43 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/31 15:57:19 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 09:40:26 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void	destruct_vao_vbo(void)
+void	destruct_vao_vbo(t_draw *draw)
 {
-	glDisableVertexAttribArray(0);//vertex_loc
+	glDisableVertexAttribArray(draw->vbo_vertex.loc);//vertex
+	glDisableVertexAttribArray(draw->vbo_colors.loc);//colors
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 
-void    draw_triangle(void)
+void    draw_triangle(t_draw *draw)
 {
-	GLuint	loc;
-	float	pt = 0.3;
-	float	points[] = {
-		+0.0, +0.0, +1.0,	//p0
-		+0.0, +0.5, +0.5,	//p1
-		+0.5, +0.0, -0.9,	//p2
-		+0.0, -0.5, +0.1,	//p3
-		-0.5, +0.0, +0.3	//p4
-	};
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// effacer l'ecran
+	glEnable(GL_DEPTH_TEST);	//gestion de la profondeur
 
-	float	colors[] = {
-		1.0, 1.0, 0.0,	//jaune
-		1.0, 1.0, 0.0,	//jaune
-		1.0, 0.5, 0.3,	//orange
-		1.0, 1.0, 0.0,	//jaune
-		1.0, 0.5, 0.3,	//orange
-	};
+	matrice_rot_create(draw);
+	glUniformMatrix4fv(draw->matrix.loc, 1, GL_FALSE, draw->matrix.values);
 
-	GLshort	index[] = {
-		0, 1,
-		0, 2,
-		0, 3,
-		0, 4,
-		4, 1,
-		1, 2,
-		2, 3,
-		3, 4
-	};
-	GLuint sh_id, ver_id, frg_id, ind_id;
-	create_vao();
-
-	sh_id = makeShaderProgram();
-
-	glEnable(GL_DEPTH_TEST);
+	create_vao(draw);
 	// VBO points
-	ver_id = make_float_vbo(points, sizeof(points), GL_ARRAY_BUFFER);
-	loc = glGetAttribLocation(sh_id, "glVertex");
-	glEnableVertexAttribArray(loc);
-	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
+	glBindBuffer(GL_ARRAY_BUFFER, draw->vbo_vertex.id);
+	glEnableVertexAttribArray(draw->vbo_vertex.loc);
+	glVertexAttribPointer(draw->vbo_vertex.loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	// VBO colors
-	frg_id = make_float_vbo(colors, sizeof(colors), GL_ARRAY_BUFFER);
-	loc = glGetAttribLocation(sh_id, "glColor");
-	glEnableVertexAttribArray(loc);
-	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
+	glBindBuffer(GL_ARRAY_BUFFER, draw->vbo_colors.id);
+	glEnableVertexAttribArray(draw->vbo_colors.loc);
+	glVertexAttribPointer(draw->vbo_colors.loc, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	// VBO indices
-	ind_id = make_short_vbo(index, sizeof(index));
-	
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vbo_index.id);
 
+	glDrawElements(GL_TRIANGLES, 3*12, GL_UNSIGNED_SHORT, 0);
 
-	//gestion de la profondeur
-	//glDrawArrays(GL_TRIANGLES, 0, 3*4);
-	glDrawElements(GL_LINES, 8*2, GL_UNSIGNED_SHORT, 0);
-	destruct_vao_vbo();
+	destruct_vao_vbo(draw);
 
 }
