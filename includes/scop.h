@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 12:59:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 15:59:57 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # include <openGL/gl3.h>
 # include "mlx_opengl.h"
 # include <math.h>
+# include <stdbool.h>
 
 # define HEIGHT_WIN	1000
 # define WIDTH_WIN	1000
@@ -117,5 +118,7 @@ void	    draw_triangle(t_draw *draw);
 GLfloat		*matrice_rot_create(t_draw *draw);
 void    	display_matrices(GLfloat *mat);
 void		destruct_vao_vbo(t_draw *draw);
+
+int     	obj_parse(t_draw *draw, char *file_name);
 
 #endif

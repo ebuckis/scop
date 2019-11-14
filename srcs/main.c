@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 11:33:40 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 15:58:14 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ int     main(int ac, char **av)
 	if (ac != 2)
 		return (-1);//error
 
-	obj_parse(draw);
+	obj_parse(&draw, av[1]);
 
 	draw.init = mlx_init();
 	draw.win = mlx_new_opengl_window(draw.init, WIDTH_WIN, HEIGHT_WIN, "super");
