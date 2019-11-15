@@ -11,13 +11,13 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "scop.h"
-//# include <stdint.h>
-//# include <stdlib.h>
-//# include <stddef.h>
-//# include <stdio.h>
-//# include <string.h>
-//#include <stdbool.h>
+//#include "scop.h"
+# include <stdint.h>
+# include <stdlib.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdbool.h>
 
 typedef struct  s_parse
 {
@@ -26,3 +26,7 @@ typedef struct  s_parse
 	size_t		*start;
 	char		**tab;
 }               t_parse;
+typedef struct  s_draw
+{
+	int i;
+}			t_draw;

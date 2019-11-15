@@ -11,7 +11,8 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parsing.h"
+//#include "parsing.h"
+#include "../includes/parsing.h"
 
 bool    is_white(char c)
 {
@@ -65,7 +66,7 @@ char		**ft_whitespace(char *line, size_t size)
 		prs.tab[i] = (char *)malloc(sizeof(char) * (prs.len[i]));
 		strncpy(prs.tab[i], line + prs.start[i], prs.len[i]);
 		prs.tab[i][prs.len[i]] = '\0';
-		printf("len : %zu && start : %zu -> word : |%s|\n", prs.len[i], prs.start[i], prs.tab[i]);
+//		printf("len : %zu && start : %zu -> word : |%s|\n", prs.len[i], prs.start[i], prs.tab[i]);
 		i++;
 	}
 	prs.tab[i] = NULL;
@@ -76,7 +77,7 @@ char		**ft_whitespace(char *line, size_t size)
 
 int     obj_parse(t_draw *draw, char *file_name)
 {
-	FILE *fp;
+	FILE	*fp;
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
@@ -100,4 +101,11 @@ int     obj_parse(t_draw *draw, char *file_name)
 		free(line);
 
 	return (0);
+}
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return 0;
+	obj_parse(NULL, av[1]);
 }
