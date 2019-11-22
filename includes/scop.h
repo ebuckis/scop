@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 15:59:57 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 14:01:07 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,13 +68,6 @@ typedef	struct		s_shader
 	char			*frag_str;
 }					t_shader;
 
-typedef struct		s_norm
-{
-	size_t			size;
-	GLfloat			*values;
-}					t_norm;
-
-
 typedef struct		s_draw
 {
 	void			*init;
@@ -87,7 +80,6 @@ typedef struct		s_draw
 	char			axis;
 	t_angle			angle;
 	t_matrix		matrix;
-	t_norm			normal;
 }					t_draw;
 
 
