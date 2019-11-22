@@ -6,14 +6,14 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/22 08:36:17 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 08:52:43 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 15:46:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-static bool		is_white(char c)
+bool		is_white(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\r'
 		|| c == '\v' || c == '\f' || c == ' ')
@@ -40,7 +40,7 @@ static int		parse_init(t_parse *prs, size_t size)
 	return (0);
 }
 
-static int		fill_parse_table(t_parse *prs, char *line, size_t i)
+static char		**fill_parse_table(t_parse *prs, char *line, size_t i)
 {
 	prs->tab = (char **)malloc(sizeof(char *) * (prs->n + 1));
 	if (!prs->tab)
@@ -67,7 +67,7 @@ char		**ft_whitespace(char *line, size_t size)
 	t_parse	prs;
 	size_t i;
 
-	if (!line || parse_init(&prs, size)))
+	if (!line || parse_init(&prs, size))
 		return (NULL);
 	i = 0;
 	while (line[i])

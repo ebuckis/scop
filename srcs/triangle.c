@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 09:38:20 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 16:39:17 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ void    draw_triangle(t_draw *draw)
 	// VBO indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vbo_index.id);
 
-	glDrawElements(GL_TRIANGLES, 3*12, GL_UNSIGNED_SHORT, 0);
+	glDrawElements(GL_TRIANGLES, draw->vbo_index.size, GL_UNSIGNED_SHORT, 0);
 
 	destruct_vao_vbo(draw);
 
