@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/14 11:28:53 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 14:28:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 14:55:24 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,28 +43,22 @@ int		save_vertex(t_draw *draw, char **tab)
 int		save_index(t_draw *draw, char **tab)
 {
 	int		i;
-	GLshort	shtab[3];
 
 	i = 1;
-	while (tab[i])
+	if (!(tab[i] && tab[i + 1] && tab[i + 2]))
+		return (1);
+	while (tab[i] && tab[i + 1] && tab[i + 2])
 	{
-		if (i > 2)//TODO: a améliorer
-			return (1);
-		shtab[i - 1] = (GLshort)itoa(tab[i]);
-		if (shtab[i - 1] > draw->vbo_vertex.size)
-			return (2);
+		draw->vbo_index.size += 3;
+		if (!draw->vbo_index.value)
+			draw->vbo_index.value = (GLfloat *)malloc(draw->vbo_index.value, sizeof(GLfloat) * draw->vbo_index.size);//TODO: verifier la taille
+		else
+			draw->vbo_index.value = (GLfloat *)realloc(draw->vbo_index.value, sizeof(GLfloat) * draw->vbo_index.size);
+		draw->vbo_index.value[draw->vbo_index.size - 3] = (GLshort)itoa(tab[0]);
+		draw->vbo_index.value[draw->vbo_index.size - 2] = (GLshort)itoa(tab[i + 1]);
+		draw->vbo_index.value[draw->vbo_index.size - 1] = (GLshort)itoa(tab[i + 2]);
 		i++;
 	}
-	if (i != 3)
-		return (1);
-	draw->vbo_index.size += 3;
-	if (!draw->vbo_index.value)
-		draw->vbo_index.value = (GLfloat *)malloc(draw->vbo_index.value, sizeof(GLfloat) * draw->vbo_index.size);//TODO: verifier la taille
-	else
-		draw->vbo_index.value = (GLfloat *)realloc(draw->vbo_index.value, sizeof(GLfloat) * draw->vbo_index.size);
-	draw->vbo_index.value[draw->vbo_index.size - 3] = shtab[0];
-	draw->vbo_index.value[draw->vbo_index.size - 2] = shtab[1];
-	draw->vbo_index.value[draw->vbo_index.size - 1] = shtab[2];
 	return (0);
 }
 

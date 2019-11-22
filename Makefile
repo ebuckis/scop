@@ -24,7 +24,8 @@ N_SRCS =	main.c	\
 			makeShaderProgram.c		\
 			makeFloatVbo.c	\
 			matrices_rotation.c	\
-			obj_parsing.c	
+			obj_parsing.c		\
+			ft_whitespace.c
 
 all : $(NAME)
 
