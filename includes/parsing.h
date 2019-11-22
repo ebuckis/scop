@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/14 14:46:33 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 15:56:11 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 08:53:01 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,3 +30,5 @@ typedef struct  s_draw
 {
 	int i;
 }			t_draw;
+
+static int		fill_parse_table(t_parse *prs, char *line, size_t i);
