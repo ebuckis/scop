@@ -16,10 +16,10 @@
 /*
 ** Matrice de rotation 4x4 sur Z :
 ** 
-** | cos(-a)|-sin(-a)|   0    |   0    |
-** | sin(-a)| cos(-a)|   0    |   0    |
-** |   0    |   0    |   1    |   0    |
-** |   0    |   0    |   0    |   1    |
+** | cos(a)|-sin(a)|   0   |   0   |
+** | sin(a)| cos(a)|   0   |   0   |
+** |   0   |   0   |   1   |   0   |
+** |   0   |   0   |   0   |   1   |
 ** 
 */
 
@@ -30,22 +30,22 @@ static GLfloat     *mat_rot_z(t_draw *draw)
 
 	matrice = draw->matrix.values;
 	angle = draw->angle.z;
-	matrice[0] = cos(-angle);
-	matrice[4] = sin(-angle);
+	matrice[0] = cos(angle);
+	matrice[4] = sin(angle);
 	matrice[1] = -matrice[4];
 	matrice[5] = matrice[0];
-	matrice[10] = 1;
-	matrice[15] = 1;
+	matrice[10] = 1.0;
+	matrice[15] = 1.0;
 	return (matrice);
 }
 
 /*
 ** Matrice de rotation 4x4 sur Y :
 ** 
-** | cos(-a)|   0    | sin(-a)|   0    |
-** |   0    |   1    |   0    |   0    |
-** |-sin(-a)|   0    | cos(-a)|   0    |
-** |   0    |   0    |   0    |   1    |
+** | cos(a)|   0   | sin(a)|   0   |
+** |   0   |   1   |   0   |   0   |
+** |-sin(a)|   0   | cos(a)|   0   |
+** |   0   |   0   |   0   |   1   |
 ** 
 */
 
@@ -56,22 +56,22 @@ static GLfloat		*mat_rot_y(t_draw *draw)
 
 	matrice = draw->matrix.values;
 	angle = draw->angle.y;
-	matrice[0] = cos(-angle);
-	matrice[2] = sin(-angle);
-	matrice[5] = 1;
+	matrice[0] = cos(angle);
+	matrice[2] = sin(angle);
+	matrice[5] = 1.0;
 	matrice[8] = -matrice[2];
 	matrice[10] = matrice[0];
-	matrice[15] = 1;
+	matrice[15] = 1.0;
 	return (matrice);
 }
 
 /*
 ** Matrice de rotation 4x4 sur X :
 ** 
-** |   1    |   0    |   0    |   0    |
-** |   0    | cos(-a)|-sin(-a)|   0    |
-** |   0    | sin(-a)| cos(-a)|   0    |
-** |   0    |   0    |   0    |   1    |
+** |   1   |   0   |   0   |   0   |
+** |   0   | cos(a)|-sin(a)|   0   |
+** |   0   | sin(a)| cos(a)|   0   |
+** |   0   |   0   |   0   |   1   |
 ** 
 */
 
@@ -83,8 +83,8 @@ static GLfloat		*mat_rot_x(t_draw *draw)
 	matrice = draw->matrix.values;
 	angle = draw->angle.x;
 	matrice[0] = 1.0;
-	matrice[5] = cos(-angle);
-	matrice[9] = sin(-angle);
+	matrice[5] = cos(angle);
+	matrice[9] = sin(angle);
 	matrice[6] = -matrice[9];
 	matrice[10] = matrice[5];
 	matrice[15] = 1.0;
