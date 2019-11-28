@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/08 10:35:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 15:00:05 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 12:53:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,10 @@ int     init_matrix(t_draw *draw)
 //	display_matrices(mat);
 
 	draw->matrix.values = matrice_generate();
+	draw->matrix.x_mat = matrice_generate();
+	draw->matrix.y_mat = matrice_generate();
+	draw->matrix.z_mat = matrice_generate();
+	draw->matrix.tmp_mat = matrice_generate();
 	if (!draw->matrix.values)
 		return (1);
 	matrice_rot_create(draw);
@@ -55,24 +59,8 @@ int		init_vertex(t_draw *draw)	//VBO vertex
 
 int		init_colors(t_draw *draw)	//VBO colors
 {
-	GLfloat	colors[] = {
-		1.0, 0.0 ,0.0,	//[0] rouge
-		0.0, 1.0, 0.0,	//[1] vert
-		0.0, 0.0, 1.0,	//[2] bleu
-		1.0, 1.0, 0.0,	//[3] jaune
-		1.0, 0.0, 1.0,	//[4] magenta
-		0.0, 1.0, 1.0,	//[5] cyan
-		1.0, 1.0, 1.0,	//[6] blanc
-		1.0, 0.5, 0.0	//[7] orange
-	};
-
-	draw->vbo_colors.values = (GLfloat *)malloc(sizeof(GLfloat) * 24);
-	for (int i = 0; i < 24; i++)
-		draw->vbo_colors.values[i] = colors[i];
-
-	draw->vbo_colors.size = 24 * sizeof(GLfloat);
 	draw->vbo_colors.loc = glGetAttribLocation(draw->shader.id, "glColor");
-	draw->vbo_colors.id = make_float_vbo(draw->vbo_colors.values, draw->vbo_colors.size, GL_ARRAY_BUFFER);
+//	draw->vbo_colors.id = make_float_vbo(draw->vbo_colors.values, draw->vbo_colors.size, GL_ARRAY_BUFFER);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 11:18:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/01 13:35:29 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 10:57:49 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,13 +30,15 @@ void main()\n\
 char    *get_frag_shader(void)
 {
 	return ("#version 400\n\
-in vec3 frgColor;\n\
 out vec4 glFragColor;\n\
 void main()\n\
 {\n\
-	glFragColor = vec4(frgColor, 1);\n\
+	float col;\n\
+	col = (gl_PrimitiveID % 6) / 10.0;\n\
+	glFragColor = vec4(col, col, col, 1.0);\n\
 }\n");
 }
+	//glFragColor = vec4(frgColor, 1);\n\
 
 
 void    get_version_opengl(void)

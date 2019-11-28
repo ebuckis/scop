@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/01 11:10:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 15:11:37 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 12:55:00 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ static GLfloat     *mat_rot_z(t_draw *draw)
 	GLfloat		*matrice;
 	GLfloat		angle;
 
-	matrice = draw->matrix.values;
+	matrice = draw->matrix.z_mat;
 	angle = draw->angle.z;
 	matrice[0] = cos(-angle);
 	matrice[4] = sin(-angle);
@@ -54,14 +54,15 @@ static GLfloat		*mat_rot_y(t_draw *draw)
 	GLfloat		*matrice;
 	GLfloat		angle;
 
-	matrice = draw->matrix.values;
+	matrice = draw->matrix.y_mat;
 	angle = draw->angle.y;
+	printf("%f\n", angle);
 	matrice[0] = cos(-angle);
 	matrice[2] = sin(-angle);
-	matrice[5] = 1;
+	matrice[5] = 1.0;
 	matrice[8] = -matrice[2];
 	matrice[10] = matrice[0];
-	matrice[15] = 1;
+	matrice[15] = 1.0;
 	return (matrice);
 }
 
@@ -80,7 +81,7 @@ static GLfloat		*mat_rot_x(t_draw *draw)
 	GLfloat		*matrice;
 	GLfloat		angle;
 
-	matrice = draw->matrix.values;
+	matrice = draw->matrix.x_mat;
 	angle = draw->angle.x;
 	matrice[0] = 1.0;
 	matrice[5] = cos(-angle);
@@ -95,9 +96,16 @@ void		matrice_rot_create(t_draw *draw)
 {
 	GLfloat 	*mat;
 
-	draw->matrix.values = mat_rot_x(draw);
-	draw->matrix.values = mat_rot_y(draw);
-	draw->matrix.values = mat_rot_z(draw);
+//	if (draw->axis == 'X')
+		draw->matrix.x_mat = mat_rot_x(draw);
+//	if (draw->axis == 'Y')
+		draw->matrix.y_mat = mat_rot_y(draw);
+//	if (draw->axis == 'Z')
+		draw->matrix.z_mat = mat_rot_z(draw);
+
+
+	mult_matrix(draw->matrix.x_mat, draw->matrix.y_mat, &(draw->matrix.tmp_mat));
+	mult_matrix(draw->matrix.tmp_mat, draw->matrix.z_mat, &(draw->matrix.values));
 }
 
 void	display_matrices(GLfloat *mat)

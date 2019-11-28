@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 15:11:29 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 12:55:31 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,10 @@
 
 typedef struct		s_matrix
 {
+	GLfloat 		*x_mat;
+	GLfloat 		*y_mat;
+	GLfloat 		*z_mat;
+	GLfloat 		*tmp_mat;
 	GLfloat 		*values;
 	GLuint			loc;
 }					t_matrix;
@@ -108,6 +112,7 @@ void		create_vao(t_draw *draw);
 void	    draw_triangle(t_draw *draw);
 
 void		matrice_rot_create(t_draw *draw);
+void		mult_matrix(GLfloat *m1, GLfloat *m2, GLfloat **dest);
 void    	display_matrices(GLfloat *mat);
 void		destruct_vao_vbo(t_draw *draw);
 
