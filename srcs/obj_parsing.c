@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/14 11:28:53 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/22 16:08:27 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 14:06:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,9 +27,9 @@ int		save_vertex(t_draw *draw, char **tab)
 		ftab[i - 1] = (GLfloat)atof(tab[i]);
 		i++;
 	}
-	printf("-+-+->fl0 %f\n", ftab[0]);
-	printf("-+-+->fl1 %f\n", ftab[1]);
-	printf("-+-+->fl2 %f\n", ftab[2]);
+//	printf("-+-+->fl0 %f\n", ftab[0]);
+//	printf("-+-+->fl1 %f\n", ftab[1]);
+//	printf("-+-+->fl2 %f\n", ftab[2]);
 
 	if (i != 4)
 		return (1);
@@ -61,9 +61,6 @@ int		save_index(t_draw *draw, char **tab)
 		draw->vbo_index.values[draw->vbo_index.size - 3] = (GLshort)atoi(tab[1]) - 1;
 		draw->vbo_index.values[draw->vbo_index.size - 2] = (GLshort)atoi(tab[i + 1]) - 1;
 		draw->vbo_index.values[draw->vbo_index.size - 1] = (GLshort)atoi(tab[i + 2]) - 1;
-	printf("-+-+->sh0 %d", draw->vbo_index.values[draw->vbo_index.size - 3]);
-	printf("-+-+->sh1 %d", draw->vbo_index.values[draw->vbo_index.size - 2]);
-	printf("-+-+->sh2 %d\n", draw->vbo_index.values[draw->vbo_index.size - 1]);
 		i++;
 	}
 	return (0);

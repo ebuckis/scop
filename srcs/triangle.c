@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 11:04:45 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 14:00:55 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,8 @@ void    draw_triangle(t_draw *draw)
 {
 	glEnable(GL_DEPTH_TEST);	//gestion de la profondeur
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// effacer l'ecran
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
+//	glEnable(GL_CULL_FACE);
+//	glCullFace(GL_FRONT);
 //	glFrontFace(GL_CW);  
 
 	matrice_rot_create(draw);

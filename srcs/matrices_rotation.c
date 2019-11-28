@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/01 11:10:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 12:55:00 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 14:04:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,14 +49,13 @@ static GLfloat     *mat_rot_z(t_draw *draw)
 ** 
 */
 
-static GLfloat		*mat_rot_y(t_draw *draw)
+GLfloat		*mat_rot_y(t_draw *draw)
 {
 	GLfloat		*matrice;
 	GLfloat		angle;
 
 	matrice = draw->matrix.y_mat;
 	angle = draw->angle.y;
-	printf("%f\n", angle);
 	matrice[0] = cos(-angle);
 	matrice[2] = sin(-angle);
 	matrice[5] = 1.0;
@@ -92,17 +91,58 @@ static GLfloat		*mat_rot_x(t_draw *draw)
 	return (matrice);
 }
 
+static int		matrice_generate(GLfloat **dest)
+{
+	GLfloat 	*mat;
+	unsigned	i;
+
+	i = 0;
+	mat = (GLfloat *)malloc(sizeof(GLfloat) * 16);
+	if (!mat)
+		return (1);
+	while (i < 16)
+	{
+		mat[i] = 0;
+		i++;
+	}
+	*dest = mat;
+	return (0);
+}
+
+int		matrix_init(t_draw *draw)
+{
+//	display_matrices(mat);
+	int 	ret;
+
+	ret = matrice_generate(&(draw->matrix.values));
+	ret |= matrice_generate(&(draw->matrix.x_mat));
+	ret |= matrice_generate(&(draw->matrix.y_mat));
+	ret |= matrice_generate(&(draw->matrix.z_mat));
+	ret |= matrice_generate(&(draw->matrix.tmp_mat));
+
+	if (ret)
+		return (ret);
+
+	draw->matrix.x_mat = mat_rot_x(draw);
+	draw->matrix.y_mat = mat_rot_y(draw);
+	draw->matrix.z_mat = mat_rot_z(draw);
+
+	matrice_rot_create(draw);
+	draw->matrix.loc = glGetUniformLocation(draw->shader.id, "matrix");
+	return (0);
+}
+
+
 void		matrice_rot_create(t_draw *draw)
 {
 	GLfloat 	*mat;
 
-//	if (draw->axis == 'X')
+	if (draw->axis == 'X')
 		draw->matrix.x_mat = mat_rot_x(draw);
-//	if (draw->axis == 'Y')
+	if (draw->axis == 'Y')
 		draw->matrix.y_mat = mat_rot_y(draw);
-//	if (draw->axis == 'Z')
+	if (draw->axis == 'Z')
 		draw->matrix.z_mat = mat_rot_z(draw);
-
 
 	mult_matrix(draw->matrix.x_mat, draw->matrix.y_mat, &(draw->matrix.tmp_mat));
 	mult_matrix(draw->matrix.tmp_mat, draw->matrix.z_mat, &(draw->matrix.values));

@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 10:32:54 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 13:34:16 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ int		draw_init(t_draw *draw)
 
 	make_shader_program(draw);
 
-	init_matrix(draw);
+	matrix_init(draw);
 
 	//VBO Vertex
 	init_vertex(draw);
