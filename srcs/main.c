@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 13:34:16 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/28 14:08:17 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,10 +21,13 @@ int     ft_key_action(int keycode, void *p)
 	printf("|%d|\n", keycode);
 	if (keycode == 86)
 		draw->axis = 'X';
-	if (keycode == 87)
+	else if (keycode == 87)
 		draw->axis = 'Y';
-	if (keycode == 88)
+	else if (keycode == 88)
 		draw->axis = 'Z';
+	else
+		draw->axis = 0;
+	
 	return (1);
 }
 
