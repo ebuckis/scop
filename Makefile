@@ -19,12 +19,13 @@ OBJ_NAME = $(N_SRCS:.c=.o)
 
 N_SRCS =	main.c	\
 			init_struct.c	\
-			draw.c	\
 			triangle.c	\
 			version.c	\
 			makeShaderProgram.c		\
 			makeFloatVbo.c	\
-			matrices_rotation.c
+			matrices_rotation.c	\
+			obj_parsing.c		\
+			ft_whitespace.c
 
 all : $(NAME)
 

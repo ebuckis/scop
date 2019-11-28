@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/01 11:10:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/08 12:49:54 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/22 15:11:37 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,7 +91,7 @@ static GLfloat		*mat_rot_x(t_draw *draw)
 	return (matrice);
 }
 
-GLfloat		*matrice_rot_create(t_draw *draw)
+void		matrice_rot_create(t_draw *draw)
 {
 	GLfloat 	*mat;
 
