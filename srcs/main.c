@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 14:08:17 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 16:34:13 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,8 @@ int     loop_func(void *p)
 
 int		draw_init(t_draw *draw)
 {
+
+
 	draw->axis = 'X';
 	draw->angle.x = 0;
 	draw->angle.y = 0;
@@ -63,6 +65,9 @@ int		draw_init(t_draw *draw)
 	make_shader_program(draw);
 
 	matrix_init(draw);
+	camera_init(draw);
+	projection_init(draw);
+
 
 	//VBO Vertex
 	init_vertex(draw);

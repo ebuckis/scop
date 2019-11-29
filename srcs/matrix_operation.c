@@ -6,12 +6,30 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 11:09:38 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 13:01:11 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 14:26:06 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
+
+int		matrice_generate(GLfloat **dest)
+{
+	GLfloat 	*mat;
+	unsigned	i;
+
+	i = 0;
+	mat = (GLfloat *)malloc(sizeof(GLfloat) * 16);
+	if (!mat)
+		return (1);
+	while (i < 16)
+	{
+		mat[i] = 0;
+		i++;
+	}
+	*dest = mat;
+	return (0);
+}
 
 void	mult_matrix(GLfloat *m1, GLfloat *m2, GLfloat **dest)
 {

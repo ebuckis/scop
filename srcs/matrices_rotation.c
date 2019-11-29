@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/01 11:10:05 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 14:04:12 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 16:29:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,24 +91,6 @@ static GLfloat		*mat_rot_x(t_draw *draw)
 	return (matrice);
 }
 
-static int		matrice_generate(GLfloat **dest)
-{
-	GLfloat 	*mat;
-	unsigned	i;
-
-	i = 0;
-	mat = (GLfloat *)malloc(sizeof(GLfloat) * 16);
-	if (!mat)
-		return (1);
-	while (i < 16)
-	{
-		mat[i] = 0;
-		i++;
-	}
-	*dest = mat;
-	return (0);
-}
-
 int		matrix_init(t_draw *draw)
 {
 //	display_matrices(mat);
@@ -128,7 +110,6 @@ int		matrix_init(t_draw *draw)
 	draw->matrix.z_mat = mat_rot_z(draw);
 
 	matrice_rot_create(draw);
-	draw->matrix.loc = glGetUniformLocation(draw->shader.id, "matrix");
 	return (0);
 }
 

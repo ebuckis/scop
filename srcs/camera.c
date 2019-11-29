@@ -6,88 +6,76 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 14:46:51 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 11:27:47 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 17:19:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void        vect_sub(GLfloat *v1, GLfloat *v2, GLfloat **dest)
+void        vect_sub(t_coord v1, t_coord v2, t_coord *dest)
 {
-    (*dest)[0] = v1[0] - v2[0];
-    (*dest)[1] = v1[1] - v2[1];
-    (*dest)[2] = v1[2] - v2[2];
+    dest->x = v1.x - v2.x;
+    dest->y = v1.y - v2.y;
+    dest->z = v1.z - v2.z;
 }
 
-void        vect_mult(GLfloat *v1, GLfloat *v2, GLfloat **dest)
+void        vect_mult(t_coord v1, t_coord v2, t_coord *dest)
 {
-    (*dest)[0] = (v1[1] * v2[2]) - (v1[2] * v2[1]);
-    (*dest)[1] = (v1[2] * v2[0]) - (v1[0] * v2[2]);
-    (*dest)[2] = (v1[0] * v2[1]) - (v1[1] * v2[0]);
+    dest->x = (v1.y * v2.z) - (v1.z * v2.y);
+    dest->y = (v1.z * v2.x) - (v1.x * v2.z);
+    dest->z = (v1.x * v2.y) - (v1.y * v2.x);
 }
 
 void    generate_look_at(t_draw *draw)
 {
-    GLfloat *r;
-    GLfloat *d;
-    GLfloat *u;
-    GLfloat *p;
-
-    r = draw->cam.pos;
-    d = draw->cam.dir;
-    u = draw->cam.up;
-    p = draw->cam.pos;
     GLfloat mat1[16] = {
-        r[0], r[1], r[2], 0,
-        u[0], u[1], u[2], 0,
-        d[0], d[1], d[2], 0,
+        draw->cam.right.x, draw->cam.right.y, draw->cam.right.z, 0,
+        draw->cam.up.x, draw->cam.up.y, draw->cam.up.z, 0,
+        draw->cam.dir.x, draw->cam.dir.y, draw->cam.dir.z, 0,
         0, 0, 0, 1
     };
     GLfloat mat2[16] = {
-        1, 0, 0, -p[0],
-        0, 1, 0, -p[1],
-        0, 0, 1, -p[2],
+        1, 0, 0, -draw->cam.pos.x,
+        0, 1, 0, -draw->cam.pos.y,
+        0, 0, 1, -draw->cam.pos.z,
         0, 0, 0, 1
     };
+    matrice_generate(&(draw->cam.look_at));
 	mult_matrix(mat1, mat2, &(draw->cam.look_at));
+    display_matrices(draw->cam.look_at);
 }
 
-int new_glfloat_array(GLfloat **array, size_t size, GLfloat value)
+void        fill_vector(t_coord *coord, GLfloat x, GLfloat y, GLfloat z)
 {
-	(*array) = (GLfloat *)malloc(sizeof(GLfloat) * size);
-    if (!(*array))
-        return (1);
-    while (size > 0)
-    {
-        (*array)[size - 1] = value;
-        size--;
-    }
-    return (0);
+    coord->x = x;
+    coord->y = y;
+    coord->z = z;
+}
+
+void printup(t_coord up)
+{
+    printf("up : x->%f, y->%f, z->%f\n", up.x, up.y, up.z);
 }
 
 int camera_init(t_draw *draw)
 { 
-    int     ret;
-    GLfloat *up;
-        return (1);
+    t_coord up;
 
-	ret = new_glfloat_array(&up, 3, 0);
-	ret |= new_glfloat_array(&draw->cam.pos, 3, 3.0);
-	ret |= new_glfloat_array(&draw->cam.targ, 3, 0.0);
-	ret |= new_glfloat_array(&draw->cam.dir, 3, 0.0);
-	ret |= new_glfloat_array(&draw->cam.right, 3, 0.0);
-	ret |= new_glfloat_array(&draw->cam.up, 3, 0.0);
-	ret |= new_glfloat_array(&draw->cam.look_at, 16, 0.0);
-    if (ret)
-        return (1);
+    fill_vector(&up, 0.0, 1.0, 0.0);
+    printup(up);
+    fill_vector(&draw->cam.pos, 0.0, 0.0, 1.0);
+    printup(draw->cam.pos);
+    fill_vector(&draw->cam.targ, 0.0, 0.0, 0.0);
+    printup(draw->cam.targ);
 
-    up[1] = 1.0;
     vect_sub(draw->cam.pos, draw->cam.targ, &(draw->cam.dir));
+    printup(draw->cam.dir);
     vect_mult(up, draw->cam.dir, &(draw->cam.right));
+    printup(draw->cam.right);
     vect_mult(draw->cam.dir, draw->cam.right, &(draw->cam.up));
+    printup(draw->cam.up);
     generate_look_at(draw);
-
     return (0);
 
 }

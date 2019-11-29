@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/18 10:54:54 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 14:00:55 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 16:33:14 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,9 +28,16 @@ void    draw_triangle(t_draw *draw)
 //	glEnable(GL_CULL_FACE);
 //	glCullFace(GL_FRONT);
 //	glFrontFace(GL_CW);  
-
+	
 	matrice_rot_create(draw);
+	//display_matrices(draw->proj.mat);
+
+	draw->matrix.loc = glGetUniformLocation(draw->shader.id, "matrix_rot");
 	glUniformMatrix4fv(draw->matrix.loc, 1, GL_FALSE, draw->matrix.values);
+	draw->cam.loc = glGetUniformLocation(draw->shader.id, "matrix_cam");
+	glUniformMatrix4fv(draw->cam.loc, 1, GL_FALSE, draw->cam.look_at);
+	draw->proj.loc = glGetUniformLocation(draw->shader.id, "matrix_proj");
+	glUniformMatrix4fv(draw->proj.loc, 1, GL_FALSE, draw->proj.mat);
 
 	create_vao(draw);
 	// VBO points

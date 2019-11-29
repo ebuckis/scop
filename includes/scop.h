@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 11:00:25 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 16:34:12 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,6 +63,13 @@ typedef	struct		s_angle
 	GLfloat			z;
 }					t_angle;
 
+typedef	struct		s_coord
+{
+	GLfloat			x;
+	GLfloat			y;
+	GLfloat			z;
+}					t_coord;
+
 typedef	struct		s_shader
 {
 	GLuint			id;
@@ -72,29 +79,46 @@ typedef	struct		s_shader
 	char			*frag_str;
 }					t_shader;
 
-typedef struct		s_cam
+typedef struct		s_camera
 {
-	GLfloat			*pos;
-	GLfloat			*targ;
-	GLfloat			*dir;
-	GLfloat			*right;
-	GLfloat			*up;
+	t_coord			pos;
+	t_coord			targ;
+	t_coord			dir;
+	t_coord			right;
+	t_coord			up;
 	GLfloat			*look_at;
-}					t_cam;
+	GLuint			loc;
+}					t_camera;
+
+typedef struct s_proj
+{
+	GLfloat			near;
+	GLfloat			far;
+	GLfloat			ratio;
+	GLfloat			b;
+	GLfloat			t;
+	GLfloat			l;
+	GLfloat			r;
+	GLfloat			angle;
+	GLfloat			*mat;
+	GLuint			loc;
+}					t_proj;
+
 
 typedef struct		s_draw
 {
+	t_camera		cam;
+	char			axis;
 	void			*init;
 	void			*win;
 	GLuint			vao;
+	t_index			vbo_index;
 	t_vbo			vbo_vertex;
 	t_vbo			vbo_colors;
-	t_index			vbo_index;
 	t_shader		shader;
-	char			axis;
 	t_angle			angle;
 	t_matrix		matrix;
-	t_cam			cam;
+	t_proj			proj;
 }					t_draw;
 
 
@@ -124,9 +148,13 @@ void	    draw_triangle(t_draw *draw);
 void		matrice_rot_create(t_draw *draw);
 int			matrix_init(t_draw *draw);
 void		mult_matrix(GLfloat *m1, GLfloat *m2, GLfloat **dest);
+int			matrice_generate(GLfloat **dest);
 void    	display_matrices(GLfloat *mat);
 void		destruct_vao_vbo(t_draw *draw);
 
+int 		camera_init(t_draw *draw);
+
 int     	obj_parse(t_draw *draw, char *file_name);
 
+int			projection_init(t_draw *draw);
 #endif

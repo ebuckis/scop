@@ -27,7 +27,8 @@ N_SRCS =	main.c	\
 			matrix_operation.c	\
 			obj_parsing.c		\
 			ft_whitespace.c		\
-			camera.c
+			camera.c		\
+			mat_projection.c
 
 all : $(NAME)
 

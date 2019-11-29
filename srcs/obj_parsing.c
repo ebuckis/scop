@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/14 11:28:53 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 14:06:28 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 17:23:18 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,9 +38,9 @@ int		save_vertex(t_draw *draw, char **tab)
 		draw->vbo_vertex.values = malloc(sizeof(GLfloat) * draw->vbo_vertex.size);//TODO: verifier la taille
 	else
 		draw->vbo_vertex.values = realloc(draw->vbo_vertex.values, sizeof(GLfloat) * draw->vbo_vertex.size);
-	draw->vbo_vertex.values[draw->vbo_vertex.size - 3] = ftab[0] / 2;
-	draw->vbo_vertex.values[draw->vbo_vertex.size - 2] = ftab[1] / 2;
-	draw->vbo_vertex.values[draw->vbo_vertex.size - 1] = ftab[2] / 2;
+	draw->vbo_vertex.values[draw->vbo_vertex.size - 3] = ftab[0] / 4;
+	draw->vbo_vertex.values[draw->vbo_vertex.size - 2] = ftab[1] / 4;
+	draw->vbo_vertex.values[draw->vbo_vertex.size - 1] = ftab[2] / 4;
 	return (0);
 }
 
