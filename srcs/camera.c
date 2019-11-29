@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/28 14:46:51 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 17:19:58 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 17:44:10 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,22 @@ int camera_init(t_draw *draw)
     vect_mult(draw->cam.dir, draw->cam.right, &(draw->cam.up));
     printup(draw->cam.up);
     generate_look_at(draw);
+  //  draw->cam.look_at[0] = 0;
+  //  draw->cam.look_at[1] = 0;
+  //  draw->cam.look_at[2] = 0;
+  //  draw->cam.look_at[3] = 3;
+  //  draw->cam.look_at[4] = 0;
+  //  draw->cam.look_at[5] = 0;
+  //  draw->cam.look_at[6] = 0;
+  //  draw->cam.look_at[7] = 0;
+  //  draw->cam.look_at[8] = 0;
+  //  draw->cam.look_at[9] = 1;
+  //  draw->cam.look_at[10] = 0;
+  //  draw->cam.look_at[11] = 0;
+  //  draw->cam.look_at[12] = 0;
+  //  draw->cam.look_at[13] = 0;
+  //  draw->cam.look_at[14] = 0;
+  //  draw->cam.look_at[15] = 0;
     return (0);
 
 }

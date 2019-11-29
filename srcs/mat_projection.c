@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/29 16:08:46 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 17:24:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 17:29:20 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ void		make_mat_proj(t_draw *draw)
 
 int		projection_init(t_draw *draw)
 {
-	draw->proj.angle = 60;
+	draw->proj.angle = 90;
 	draw->proj.near = 0.1;
 	draw->proj.far = 100;
 	draw->proj.ratio = IMAGEWIDTH / (float)IMAGEHEIGHT; 
