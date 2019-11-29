@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/28 13:40:18 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/29 11:00:25 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,6 +72,16 @@ typedef	struct		s_shader
 	char			*frag_str;
 }					t_shader;
 
+typedef struct		s_cam
+{
+	GLfloat			*pos;
+	GLfloat			*targ;
+	GLfloat			*dir;
+	GLfloat			*right;
+	GLfloat			*up;
+	GLfloat			*look_at;
+}					t_cam;
+
 typedef struct		s_draw
 {
 	void			*init;
@@ -84,8 +94,8 @@ typedef struct		s_draw
 	char			axis;
 	t_angle			angle;
 	t_matrix		matrix;
+	t_cam			cam;
 }					t_draw;
-
 
 
 
