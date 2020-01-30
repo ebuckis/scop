@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:16:18 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 16:34:12 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/30 13:54:28 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,10 +26,10 @@
 
 # define HEIGHT_WIN	1000
 # define WIDTH_WIN	1000
+
 /*
 ** Stuctures 
 */
-
 
 typedef struct		s_matrix
 {

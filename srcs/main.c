@@ -6,7 +6,7 @@
 /*   By: kcabus <kcabus@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/17 17:14:03 by kcabus       #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/29 16:34:13 by kcabus      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/30 14:02:58 by kcabus      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ int     ft_key_action(int keycode, void *p)
 	t_draw	*draw;
 
 	draw = (t_draw *)p;
-	printf("|%d|\n", keycode);
+//	printf("|%d|\n", keycode);
 	if (keycode == 86)
 		draw->axis = 'X';
 	else if (keycode == 87)
@@ -52,8 +52,6 @@ int     loop_func(void *p)
 
 int		draw_init(t_draw *draw)
 {
-
-
 	draw->axis = 'X';
 	draw->angle.x = 0;
 	draw->angle.y = 0;
@@ -91,10 +89,12 @@ int     main(int ac, char **av)
 	draw.vbo_index.size = 0;
 	draw.vbo_vertex.values = NULL;
 	draw.vbo_vertex.size = 0;
+
+	//Parsing
 	obj_parse(&draw, av[1]);
 
 	draw.init = mlx_init();
-	draw.win = mlx_new_opengl_window(draw.init, WIDTH_WIN, HEIGHT_WIN, "super");
+	draw.win = mlx_new_opengl_window(draw.init, WIDTH_WIN, HEIGHT_WIN, "Scop");
 
 	draw_init(&draw);
 	
